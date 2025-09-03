@@ -1,0 +1,36 @@
+/* Global Styles */
+
+body {
+    background-color: white;
+    font-family: "Raleway", sans-serif;
+    color: #445361;
+    text-align: center;
+}
+
+/* Heading */
+
+
+/* Game layout */
+
+/*game-section {
+
+}*/
+
+game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Media queries */
+
+@media (max-width: 414px) {
+
+}
+
+@media (max-width: 320px) {
+
+}
