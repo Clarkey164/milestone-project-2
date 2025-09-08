@@ -12,23 +12,24 @@
 </head>
 <body>
     <header>
-        <h1>Symmetry Seekers</h1>
+        <h1>Symmetry <em>Seekers</em></h1>
     </header>
     <main>
         <section id="instructions-section">
             <h2>How to Play</h2>
-            <p>Click on the tiles to symmetry and become the master of symmetry seekers! The more symmetry you create, the higher your score!</p>
+            <p id="play">Click on the cards to create symmetry and become the master of Symmetry Seekers! The more symmetry you create, the higher your score!</p>
         </section>
         <section id="game-section">
-            <div id="game-container">
-                <button id="game-button" onclick="runGame()">Start Game</button>
-                <div id="game-grid">
-                    <!-- Game tiles will be generated here -->
-                </div>
-                <div id="info-panel">
-                    <p id="score">Score: 0</p>
-                    <p id="level">Level: 1</p>
-                </div>
+            <button id="start-button" onclick="generateCards(), shuffleCards()">Start Game</button>
+            <div id="game-grid">
+                <!--Game tiles will be generated here -->
+            </div>
+            <div id="info-panel">
+                <p id="score"></p>
+                <p id="level">Level: 1</p>
+            </div>
+            <div class="actions">
+                <button id="reset-button" onclick="restartGame()">Reset Game</button>
             </div>
         </section>
     </main>

@@ -1,36 +1,196 @@
 /* Global Styles */
 
 body {
-    background-color: white;
     font-family: "Raleway", sans-serif;
-    color: #445361;
+    min-height: 100vh;
+    min-width: 100vh;
+    color: white;
+    background-color: #12181f;
     text-align: center;
 }
 
 /* Heading */
 
+h1 {
+    font-size: 3rem;
+    margin: 20px 0;
+    font-weight: 700;
+    color: #00bcd4;
+}
 
-/* Game layout */
+h1 > em {
+    color: #ff4081;
+    text-transform: uppercase;
+}
 
-/*game-section {
+/* Paragraph */
 
-}*/
+#play {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    font-weight: 350;
+}
 
-game-container {
+#info-panel {
+    font-size: 1rem;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+#score {
+    color: #00bcd4
+}
+
+#level {
+    color: #ff4081
+}
+
+/* Buttons */
+
+#start-button {
+    background-color: #ff4081;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.actions {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100vw;
+}
+
+.actions button {
+    background-color: #00bcd4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Hover effect for buttons */
+
+#start-button:hover {
+    background-color: #00bcd4;
+}
+
+.actions button:hover {
+    background-color: #ff4081;
+}   
+
+/* Game Area */
+
+#game-grid {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto;
+    grid-template-columns: repeat(6, 140px);
+    /* Reference in ReadMe */
+    grid-template-rows: repeat(2, calc(140px / 2 * 3));
+}
+
+.card {
+    width: 140px;
+    height: calc(140px / 2 * 3);
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    /* Reference in ReadMe */
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+}
+
+.front-image {
+    width:60px;
+    height:60px;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+}
+
+.card .front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+}
+
+.card .back {
+    background-image: url(assets/images/pattern_waves.png);
+    background-position: center center;
+    background-size: cover;
+    backface-visibility: hidden;
 }
 
 /* Media queries */
 
-@media (max-width: 414px) {
+@media (max-width: 768px) {
+    /* Adjust content to fit on medium screens */
+    body {
+        padding: 0 10px;
+        box-sizing: border-box;
+        min-width: auto;
+        overflow-x: hidden;
+    }
 
+    /* Adjust font sizes for medium screens */
+    h1 {
+        font-size: 2.5rem;
+    }
+    #play {
+        font-size: 1.1rem;
+        text-align:center;
+    }
+    #info-panel {
+        font-size: 0.95rem;
+    }
+    #start-button {
+        font-size: 1.3rem;
+        padding: 12px 24px;
+    }
+    .actions button {
+        font-size: 0.95rem;
+        padding: 9px 18px;
+        margin: 7px;
+    }
 }
 
-@media (max-width: 320px) {
-
+@media (max-width: 360px) {
+    /* Adjust font sizes for smaller screens */
+    h1 {
+        font-size: 2.5rem;
+    }
+    #play {
+        font-size: 1rem;
+    }
+    #info-panel {
+        font-size: 0.9rem;
+    }
+    #start-button {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    }
+    .actions button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        margin: 5px;
+    }
 }
