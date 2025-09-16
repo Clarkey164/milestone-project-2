@@ -34,7 +34,8 @@ function generateCards() {
             <div class="front">
                 <img src="assets/images/${name}.png" alt="${name}" class="front-image">
             </div>
-            <div class="card back">
+            <div class="back">
+                <img src="assets/images/pattern_waves.png" alt="Card Back" class="card back">
             </div>
         `;
         card.addEventListener("click", flipCard);

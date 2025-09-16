@@ -134,7 +134,7 @@ h1 > em {
 }
 
 .card .back {
-    background-image: url(assets/images/pattern_waves.png);
+    /* background-image: url(assets/images/pattern_waves.png);*/
     background-position: center center;
     background-size: cover;
     backface-visibility: hidden;
