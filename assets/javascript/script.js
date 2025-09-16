@@ -23,7 +23,7 @@ function shuffleCards() {
 }
 
 function generateCards() {
-    const cardNames = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'peach', 'pear', 'stawberry',];
+    const cardNames = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange',];
     cards = [...cardNames, ...cardNames];  
     shuffleCards();
     cards.forEach(name => {
@@ -31,8 +31,11 @@ function generateCards() {
         card.classList.add("card",);
         card.dataset.name = name;
         card.innerHTML = `
-            <div class="front-image"></div>
-            <div class="card back"></div>
+            <div class="front">
+                <img src="assets/images/${name}.png" alt="${name}" class="front-image">
+            </div>
+            <div class="card back">
+            </div>
         `;
         card.addEventListener("click", flipCard);
         gameGrid.appendChild(card);
@@ -83,10 +86,38 @@ function resetBoard() {
 }
 
 function restartGame() {
-    resetBoard();
-    shuffleCards();
+    gameGrid.innerHTML = "";
     score = 0;
     document.getElementById("score").innerText = "Score: " + score;
-    gameGrid.innerHTML = '';
-    generateCards();    
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+    resetBoard();
+    generateCards(); 
+    shuffleCards();
+}
+
+function levelUp() {
+
+    if (score === 6) {
+        alert("Congratulations! You've completed Level 1! Get ready for Level 2!");
+    }  
+
+    const cardnames = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'peach', 'pear', 'stawberry'];
+    cards = [...cardnames, ...cardnames];  
+    shuffleCards();
+    cards.forEach(name => {
+        const card = document.createElement("div");
+        card.classList.add("card",);
+        card.dataset.name = name;
+        card.innerHTML = `
+            <div class="front">
+                <img src="assets/images/${name}.jpg" alt="${name}" class="front-image">
+            </div>
+            <div class="back">
+            </div>
+        `;
+        card.addEventListener("click", flipCard);
+        gameGrid.appendChild(card);
+    });
 }
