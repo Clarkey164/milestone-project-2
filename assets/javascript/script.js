@@ -54,11 +54,18 @@ function flipCard() {
     }
 
     secondCard = this;
-    score++;
-    document.getElementById("score").innerText = "Score: " + score;
+    //score++;
+    //document.getElementById("score").innerText = "Score: " + score;
     lockBoard = true;
 
     checkForMatch();
+}
+
+function updateScore() {
+    if (checkForMatch() === true) {
+        score++;
+        document.getElementById("score").innerText = "Score: " + score;
+    }
 }
 
 function checkForMatch() {
@@ -116,9 +123,22 @@ function levelUp() {
                 <img src="assets/images/${name}.jpg" alt="${name}" class="front-image">
             </div>
             <div class="back">
+                <img src="assets/images/pattern_waves.png" alt="Card Back" class="card back">
             </div>
         `;
         card.addEventListener("click", flipCard);
         gameGrid.appendChild(card);
+    });
+}
+
+function hideStartButton() {
+    addEventListener("click", function() {
+        document.getElementById("start-button").style.display = "none";
+    });
+}
+
+function hideInstructions() {
+    addEventListener("click", function() {
+        document.getElementById("instructions-section").style.display = "none";
     });
 }
