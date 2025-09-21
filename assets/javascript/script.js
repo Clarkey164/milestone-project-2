@@ -6,12 +6,16 @@ let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
 let attempts = 0;
+let level = 1;
 
 //Level 1 Cards (6 pairs)
-const cardNames = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange'];
+const cardNamesLevel1 = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange'];
 
 //Level 2 Cards (9 pairs)
 const cardNamesLevel2 = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'pear', 'peach', 'strawberry'];
+
+// Level 3 Cards (12 pairs) 
+const cardNamesLevel3 = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'pear', 'peach', 'strawberry', 'watermelon', 'kiwi', 'mango'];
 
 
 // Card Data
@@ -28,8 +32,8 @@ function shuffleCards() {
 }
 
 // Generate Cards
-function generateCards() {
-    cards = [...cardNames, ...cardNames];  
+function generateCards(cardNamesLevel1) {
+    cards = [...cardNamesLevel1, ...cardNamesLevel1];  
     shuffleCards();
     cards.forEach(name => {
         const card = document.createElement("div");
@@ -81,6 +85,7 @@ function checkForMatch() {
         document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
         disableCards();
         levelTwo();
+        levelThree();
     } else {
         unflipCards();
     }
@@ -119,7 +124,7 @@ function restartGame() {
     secondCard = null;
     lockBoard = false;
     resetBoard();
-    generateCards(); 
+    generateCards(cardNamesLevel1); 
     shuffleCards();
 }
 
@@ -127,20 +132,42 @@ function restartGame() {
 // Level Up Function
 function levelTwo() {
 
-    if (score === 6) {
+    if (score === 6 && level === 1) {
         alert("Congratulations! You've completed Level 1. Get ready for Level 2!");
         document.getElementById("level").innerText = "Level: 2";
         
         // Reset game state for Level 2
         score = 0;
         attempts = 0;
+        level = 2;
         document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
+        document.getElementById("level").innerText = "Level: 2";
 
         cards = [...cardNamesLevel2, ...cardNamesLevel2];  
         gameGrid.innerHTML = ""; // Clear existing cards
         shuffleCards();
         generateCards(cardNamesLevel2);
     }
+}
+
+//Level 3 Function
+function levelThree() {
+
+    if (score === 9 && level === 2) {
+        alert("Congratulations! You've completed Level 2. Get ready for Level 3!");
+        document.getElementById("level").innerText = "Level: 3";
+
+        // Reset game state for Level 3
+        score = 0;
+        attempts = 0;
+        level = 3;
+        document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
+
+        cards = [...cardNamesLevel3, ...cardNamesLevel3];  
+        gameGrid.innerHTML = ""; // Clear existing cards
+        shuffleCards();
+        generateCards(cardNamesLevel3);
+    }   
 }
 
 // Hide Start Button and Instructions on Click
