@@ -5,8 +5,10 @@ let cards = [];
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
+let attempts = 0;
 
-document.getElementById("score").innerText = "Score: " + score;
+//document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
+//document.getElementById("level").innerText = "Level: 1";
 
 // Card Data
 
@@ -41,11 +43,14 @@ function generateCards() {
         card.addEventListener("click", flipCard);
         gameGrid.appendChild(card);
     });
+
+    document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
+    document.getElementById("level").innerText = "Level: 1";
 }
 
 function flipCard() {
     if (lockBoard) return;
-    if (this === firstCard) return; // Prevent double click on the same card
+    if (this === firstCard) return; 
 
     this.classList.add("flipped"); 
     if (!firstCard) {
@@ -54,17 +59,26 @@ function flipCard() {
     }
 
     secondCard = this;
-    //score++;
-    //document.getElementById("score").innerText = "Score: " + score;
     lockBoard = true;
+
+    // Count attempt (because 2 cards are flipped)
+    attempts++;
+    document.getElementById("score").innerText =
+        "Score: " + score + "  " + "Attempts: " + attempts;
 
     checkForMatch();
 }
 
-function updateScore() {
-    if (checkForMatch() === true) {
+function checkForMatch() {
+    let isMatch = firstCard.dataset.name === secondCard.dataset.name;
+    if (isMatch) {
         score++;
-        document.getElementById("score").innerText = "Score: " + score;
+        document.getElementById("score").innerText =
+            "Score: " + score + "  " + "Attempts: " + attempts;
+        disableCards();
+        levelUp();
+    } else {
+        unflipCards();
     }
 }
 
@@ -96,7 +110,8 @@ function resetBoard() {
 function restartGame() {
     gameGrid.innerHTML = "";
     score = 0;
-    document.getElementById("score").innerText = "Score: " + score;
+    attempts = 0;
+    document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
     firstCard = null;
     secondCard = null;
     lockBoard = false;
@@ -105,30 +120,25 @@ function restartGame() {
     shuffleCards();
 }
 
+// Level Up
 function levelUp() {
+    if (score === 6) { // 6 pairs = Level 1 complete
+        alert("Congratulations! You've completed Level 1. Get ready for Level 2!");
+        document.getElementById("level").innerText = "Level: 2";
 
-    if (score === 6) {
-        alert("Congratulations! You've completed Level 1! Get ready for Level 2!");
-    }  
+        // reset score for new challenge
+        score = 0;
+        attempts = 0;
 
-    const cardnames = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'peach', 'pear', 'stawberry'];
-    cards = [...cardnames, ...cardnames];  
-    shuffleCards();
-    cards.forEach(name => {
-        const card = document.createElement("div");
-        card.classList.add("card",);
-        card.dataset.name = name;
-        card.innerHTML = `
-            <div class="front">
-                <img src="assets/images/${name}.jpg" alt="${name}" class="front-image">
-            </div>
-            <div class="back">
-                <img src="assets/images/pattern_waves.png" alt="Card Back" class="card back">
-            </div>
-        `;
-        card.addEventListener("click", flipCard);
-        gameGrid.appendChild(card);
-    });
+        document.getElementById("score").innerText =
+            "Score: " + score + "  " + "Attempts: " + attempts;
+
+        const cardNamesLevel2 = [
+            'apple', 'banana', 'cherry', 'grape', 'lemon',
+            'orange', 'pear', 'peach', 'strawberry'
+        ];
+        generateCards(cardNamesLevel2);
+    }
 }
 
 function hideStartButton() {
