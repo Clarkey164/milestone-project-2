@@ -15,7 +15,7 @@ const cardNamesLevel1 = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange'
 const cardNamesLevel2 = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'pear', 'peach', 'strawberry'];
 
 // Level 3 Cards (12 pairs) 
-const cardNamesLevel3 = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'pear', 'peach', 'strawberry', 'watermelon', 'kiwi', 'mango'];
+const cardNamesLevel3 = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'pear', 'peach', 'strawberry', 'watermelon', 'kiwi', 'pineapple'];
 
 
 // Card Data
@@ -52,7 +52,7 @@ function generateCards(cardNamesLevel1) {
     });
 
     document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
-    document.getElementById("level").innerText = "Level: 1";
+    document.getElementById("level").innerText = "Level: " + level;
 }
 
 
@@ -86,6 +86,7 @@ function checkForMatch() {
         disableCards();
         levelTwo();
         levelThree();
+        gameComplete();
     } else {
         unflipCards();
     }
@@ -119,7 +120,9 @@ function restartGame() {
     gameGrid.innerHTML = "";
     score = 0;
     attempts = 0;
+    level = 1;
     document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
+    document.getElementById("level").innerText = "Level: " + level;
     firstCard = null;
     secondCard = null;
     lockBoard = false;
@@ -128,20 +131,17 @@ function restartGame() {
     shuffleCards();
 }
 
-// Bug Present, Level 2 not working as intended
+// Bug Present, Level 2 not working as intended - REFERENCE IN README
 // Level Up Function
 function levelTwo() {
 
     if (score === 6 && level === 1) {
         alert("Congratulations! You've completed Level 1. Get ready for Level 2!");
-        document.getElementById("level").innerText = "Level: 2";
         
         // Reset game state for Level 2
-        score = 0;
-        attempts = 0;
         level = 2;
         document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
-        document.getElementById("level").innerText = "Level: 2";
+        //document.getElementById("level").innerText = "Level: 2";
 
         cards = [...cardNamesLevel2, ...cardNamesLevel2];  
         gameGrid.innerHTML = ""; // Clear existing cards
@@ -153,21 +153,53 @@ function levelTwo() {
 //Level 3 Function
 function levelThree() {
 
-    if (score === 9 && level === 2) {
+    if (score === 15 && level === 2) {
         alert("Congratulations! You've completed Level 2. Get ready for Level 3!");
         document.getElementById("level").innerText = "Level: 3";
 
         // Reset game state for Level 3
-        score = 0;
-        attempts = 0;
         level = 3;
         document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
+        //document.getElementById("level").innerText = "Level: 3";
 
-        cards = [...cardNamesLevel3, ...cardNamesLevel3];  
         gameGrid.innerHTML = ""; // Clear existing cards
+        cards = [...cardNamesLevel3, ...cardNamesLevel3];  
+        cards.forEach(name => {
+        const card = document.createElement("div");
+        card.classList.add("card",);
+        card.dataset.name = name;
+        card.innerHTML = `
+            <div class="front">
+                <img src="assets/images/${name}.png" alt="${name}" class="front-image">
+            </div>
+            <div class="back">
+                <img src="assets/images/pattern_waves.png" alt="Card Back" class="card back">
+            </div>
+        `;
         shuffleCards();
-        generateCards(cardNamesLevel3);
-    }   
+        //generateCards(cardNamesLevel3);
+        card.addEventListener("click", flipCard);
+        gameGrid.appendChild(card);
+    });
+    }
+}
+
+function gameComplete() {
+    if (score === 27 && level === 3) {
+        // Remove cards from the grid
+        gameGrid.innerHTML = "";
+
+        document.createElement("div");
+        const message = document.createElement("div");
+        message.classList.add("message");
+        message.innerHTML = `
+            <h2>Congratulations! You've completed all levels!</h2>
+            <p>Your final score is ${score} with ${attempts} attempts.</p>
+            <p>Click the restart button to play again.</p>
+        `;
+        document.body.appendChild(message);
+
+    }
 }
 
 // Hide Start Button and Instructions on Click

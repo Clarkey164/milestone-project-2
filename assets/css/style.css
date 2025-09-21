@@ -107,6 +107,13 @@ h1 > em {
     transition: all 0.5s ease-in-out;
 }
 
+/* Bug: Level-3 grid to big for viewport*/
+/* will be used to adjust level-3 grid*/ 
+.level-3 {
+    /* Adjust grid for Level-3*/
+    grid-template-columns: repeat(8, 100px);
+}
+
 .front-image {
     width:60px;
     height:60px;
@@ -138,6 +145,12 @@ h1 > em {
     background-position: center center;
     background-size: cover;
     backface-visibility: hidden;
+}
+
+.message {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #00bcd4;
 }
 
 /* Media queries */
