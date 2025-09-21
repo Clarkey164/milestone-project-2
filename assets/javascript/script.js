@@ -7,11 +7,14 @@ let lockBoard = false;
 let score = 0;
 let attempts = 0;
 
-//document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
-//document.getElementById("level").innerText = "Level: 1";
+//Level 1 Cards (6 pairs)
+const cardNames = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange'];
+
+//Level 2 Cards (9 pairs)
+const cardNamesLevel2 = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange', 'pear', 'peach', 'strawberry'];
+
 
 // Card Data
-
 function shuffleCards() {
     let currentIndex = cards.length, temporaryValue, randomIndex;
 
@@ -24,8 +27,8 @@ function shuffleCards() {
     }
 }
 
+// Generate Cards
 function generateCards() {
-    const cardNames = ['apple', 'banana', 'cherry', 'grape', 'lemon', 'orange',];
     cards = [...cardNames, ...cardNames];  
     shuffleCards();
     cards.forEach(name => {
@@ -48,6 +51,8 @@ function generateCards() {
     document.getElementById("level").innerText = "Level: 1";
 }
 
+
+// Select and Flip Cards
 function flipCard() {
     if (lockBoard) return;
     if (this === firstCard) return; 
@@ -63,36 +68,32 @@ function flipCard() {
 
     // Count attempt (because 2 cards are flipped)
     attempts++;
-    document.getElementById("score").innerText =
-        "Score: " + score + "  " + "Attempts: " + attempts;
+    document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
 
     checkForMatch();
 }
 
+// Check for Match
 function checkForMatch() {
     let isMatch = firstCard.dataset.name === secondCard.dataset.name;
     if (isMatch) {
         score++;
-        document.getElementById("score").innerText =
-            "Score: " + score + "  " + "Attempts: " + attempts;
+        document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
         disableCards();
-        levelUp();
+        levelTwo();
     } else {
         unflipCards();
     }
-}
+} 
 
-function checkForMatch() {
-    let isMatch = firstCard.dataset.name === secondCard.dataset.name;
-    isMatch ? disableCards() : unflipCards();
-}
-
+// Disable Matched Cards
 function disableCards() {
     firstCard.removeEventListener("click", flipCard);
     secondCard.removeEventListener("click", flipCard);
     resetBoard();
 }
 
+// Unflip Cards
 function unflipCards() {
     setTimeout(() => {
         firstCard.classList.remove("flipped");
@@ -101,12 +102,14 @@ function unflipCards() {
     }, 1000);
 }
 
+// Reset Board
 function resetBoard() {
     firstCard = null;
     secondCard = null;
     lockBoard = false;
 }
 
+// Restart Game
 function restartGame() {
     gameGrid.innerHTML = "";
     score = 0;
@@ -120,27 +123,27 @@ function restartGame() {
     shuffleCards();
 }
 
-// Level Up
-function levelUp() {
-    if (score === 6) { // 6 pairs = Level 1 complete
+// Bug Present, Level 2 not working as intended
+// Level Up Function
+function levelTwo() {
+
+    if (score === 6) {
         alert("Congratulations! You've completed Level 1. Get ready for Level 2!");
         document.getElementById("level").innerText = "Level: 2";
-
-        // reset score for new challenge
+        
+        // Reset game state for Level 2
         score = 0;
         attempts = 0;
+        document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
 
-        document.getElementById("score").innerText =
-            "Score: " + score + "  " + "Attempts: " + attempts;
-
-        const cardNamesLevel2 = [
-            'apple', 'banana', 'cherry', 'grape', 'lemon',
-            'orange', 'pear', 'peach', 'strawberry'
-        ];
+        cards = [...cardNamesLevel2, ...cardNamesLevel2];  
+        gameGrid.innerHTML = ""; // Clear existing cards
+        shuffleCards();
         generateCards(cardNamesLevel2);
     }
 }
 
+// Hide Start Button and Instructions on Click
 function hideStartButton() {
     addEventListener("click", function() {
         document.getElementById("start-button").style.display = "none";
