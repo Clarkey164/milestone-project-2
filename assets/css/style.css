@@ -187,6 +187,7 @@ h1 > em {
 }
 
 @media (max-width: 360px) {
+
     /* Adjust font sizes for smaller screens */
     h1 {
         font-size: 2.5rem;

@@ -162,25 +162,10 @@ function levelThree() {
         document.getElementById("score").innerText = "Score: " + score + "  " + "Attempts: " + attempts;
         //document.getElementById("level").innerText = "Level: 3";
 
-        gameGrid.innerHTML = ""; // Clear existing cards
         cards = [...cardNamesLevel3, ...cardNamesLevel3];  
-        cards.forEach(name => {
-        const card = document.createElement("div");
-        card.classList.add("card",);
-        card.dataset.name = name;
-        card.innerHTML = `
-            <div class="front">
-                <img src="assets/images/${name}.png" alt="${name}" class="front-image">
-            </div>
-            <div class="back">
-                <img src="assets/images/pattern_waves.png" alt="Card Back" class="card back">
-            </div>
-        `;
+        gameGrid.innerHTML = ""; // Clear existing cards
         shuffleCards();
-        //generateCards(cardNamesLevel3);
-        card.addEventListener("click", flipCard);
-        gameGrid.appendChild(card);
-    });
+        generateCards(cardNamesLevel3);
     }
 }
 
