@@ -166,7 +166,21 @@ function levelThree() {
         gameGrid.innerHTML = ""; // Clear existing cards
         shuffleCards();
         generateCards(cardNamesLevel3);
+
+        // Mark the grid as Level 3 for CSS and adjustments
+        gameGrid.classList.add("level-3");
+
+        // Adjust the grid to fit viewport
+        adjustLevel3Grid();
     }
+}
+
+// Adjust Level 3 Grid based on viewport width
+function adjustLevel3Grid() {
+    const viewportWidth = window.innerWidth;
+    if (level === 3) {
+            gameGrid.style.gridTemplateColumns = "repeat(8, 1fr)";
+        }
 }
 
 function gameComplete() {
@@ -179,11 +193,13 @@ function gameComplete() {
         message.classList.add("message");
         message.innerHTML = `
             <h2>Congratulations! You've completed all levels!</h2>
-            <p>Your final score is ${score} with ${attempts} attempts.</p>
+            <p>Your final score is ${score} with ${attempts} attempts. </p>
+            <p>Total Score of ${(score + attempts)}!</p>
             <p>Click the restart button to play again.</p>
         `;
-        document.body.appendChild(message);
-
+        
+        // Append the message to the game grid
+        gameGrid.appendChild(message);
     }
 }
 
@@ -197,5 +213,12 @@ function hideStartButton() {
 function hideInstructions() {
     addEventListener("click", function() {
         document.getElementById("instructions-section").style.display = "none";
+    });
+}
+
+// Hide Reset button before game starts
+function showResetButton() {
+    addEventListener("click", function() {
+        document.getElementById("reset-button").style.display = "block";
     });
 }

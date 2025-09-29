@@ -3,10 +3,12 @@
 body {
     font-family: "Raleway", sans-serif;
     min-height: 100vh;
-    min-width: 100vh;
+    min-width: 100%;
     color: white;
     background-color: #12181f;
     text-align: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 /* Heading */
@@ -73,6 +75,10 @@ h1 > em {
     border-radius: 5px;
 }
 
+#reset-button {
+    display: none; /* Hidden by default, shown when game starts */
+}
+
 /* Hover effect for buttons */
 
 #start-button:hover {
@@ -111,7 +117,14 @@ h1 > em {
 /* will be used to adjust level-3 grid*/ 
 .level-3 {
     /* Adjust grid for Level-3*/
-    grid-template-columns: repeat(8, 100px);
+    grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
+    gap: 5px; /* tighter spacing so it fits */
+    padding : 5px; /* padding around the grid */
+}
+
+.level-3 .card {
+    width: 100%;
+    aspect-ratio: 2/3;  /* keeps the card proportion */
 }
 
 .front-image {
@@ -147,9 +160,9 @@ h1 > em {
     backface-visibility: hidden;
 }
 
-.message {
+#game-grid .message {
     font-size: 1.5rem;
-    margin-top: 20px;
+    padding: 20px;
     color: #00bcd4;
 }
 
@@ -157,54 +170,15 @@ h1 > em {
 
 @media (max-width: 768px) {
     /* Adjust content to fit on medium screens */
-    body {
-        padding: 0 10px;
-        box-sizing: border-box;
-        min-width: auto;
-        overflow-x: hidden;
-    }
-
-    /* Adjust font sizes for medium screens */
-    h1 {
-        font-size: 2.5rem;
-    }
-    #play {
-        font-size: 1.1rem;
-        text-align:center;
-    }
-    #info-panel {
-        font-size: 0.95rem;
-    }
-    #start-button {
-        font-size: 1.3rem;
-        padding: 12px 24px;
-    }
-    .actions button {
-        font-size: 0.95rem;
-        padding: 9px 18px;
-        margin: 7px;
-    }
+    h1 { font-size: 2rem; }
+    #game-grid { gap: 8px; }
+    .card { aspect-ratio: 2/3; }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
 
     /* Adjust font sizes for smaller screens */
-    h1 {
-        font-size: 2.5rem;
-    }
-    #play {
-        font-size: 1rem;
-    }
-    #info-panel {
-        font-size: 0.9rem;
-    }
-    #start-button {
-        font-size: 1.2rem;
-        padding: 10px 20px;
-    }
-    .actions button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-        margin: 5px;
-    }
+    h1 { font-size: 1.8rem; }
+    #game-grid { gap: 6px; }
+    .card { aspect-ratio: 2/3; }
 }
