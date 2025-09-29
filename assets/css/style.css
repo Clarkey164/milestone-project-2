@@ -113,18 +113,21 @@ h1 > em {
     transition: all 0.5s ease-in-out;
 }
 
-/* Bug: Level-3 grid to big for viewport*/
 /* will be used to adjust level-3 grid*/ 
 .level-3 {
     /* Adjust grid for Level-3*/
     grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
-    gap: 5px; /* tighter spacing so it fits */
-    padding : 5px; /* padding around the grid */
+    grid-template-rows: repeat(2, auto); /* 2 rows with automatic height */
+    gap: 8px; /* Slightly smaller gap for better fit */
 }
 
 .level-3 .card {
     width: 100%;
-    aspect-ratio: 2/3;  /* keeps the card proportion */
+    height: auto; /* Maintain aspect ratio */
+    aspect-ratio: 2 / 3; /* Maintain 2:3 aspect ratio */
+    max-width: 100px; /* Limit max width for better fit */
+    max-height: 150px; /* Limit max height for better fit */
+    margin: 0 auto; /* Center cards in their grid cells */
 }
 
 .front-image {
@@ -168,17 +171,40 @@ h1 > em {
 
 /* Media queries */
 
+/* Tablet (below 768px) */
 @media (max-width: 768px) {
-    /* Adjust content to fit on medium screens */
-    h1 { font-size: 2rem; }
-    #game-grid { gap: 8px; }
-    .card { aspect-ratio: 2/3; }
+    #instructions-section {
+        padding: 10px 40px;
+    }
+
+    #game-grid {
+        width: 100%; /* full width */
+        max-width: 700px; /* optional: limit max width so cards don’t stretch too much */
+        margin: 0 auto; /* keep centered */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .card {
+        width: 100%;
+        aspect-ratio: 2/3; /* maintains proportions */
+    }
+
+    .level-3 {
+        grid-template-columns: repeat(3, 1fr); /* 6 cards per row on tablet */
+        aspect-ratio: 2 / 3; /* Maintain 2:3 aspect ratio */
+    }
 }
 
-@media (max-width: 480px) {
+/* Mobile (360px) */
+@media (max-width: 360px) {
+    #instructions-section {
+        padding: 10px 20px;
+    }
 
-    /* Adjust font sizes for smaller screens */
-    h1 { font-size: 1.8rem; }
-    #game-grid { gap: 6px; }
-    .card { aspect-ratio: 2/3; }
+    #game-grid {
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr); /* 2 card per row */
+        gap: 5px;
+    }
 }

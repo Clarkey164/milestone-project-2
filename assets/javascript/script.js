@@ -179,8 +179,10 @@ function levelThree() {
 function adjustLevel3Grid() {
     const viewportWidth = window.innerWidth;
     if (level === 3) {
+        if (viewportWidth > 800) {
             gameGrid.style.gridTemplateColumns = "repeat(8, 1fr)";
         }
+    }
 }
 
 function gameComplete() {
