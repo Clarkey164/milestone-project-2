@@ -169,19 +169,7 @@ function levelThree() {
 
         // Mark the grid as Level 3 for CSS and adjustments
         gameGrid.classList.add("level-3");
-
-        // Adjust the grid to fit viewport
-        adjustLevel3Grid();
-    }
-}
-
-// Adjust Level 3 Grid based on viewport width
-function adjustLevel3Grid() {
-    const viewportWidth = window.innerWidth;
-    if (level === 3) {
-        if (viewportWidth > 770) {
-            gameGrid.style.gridTemplateColumns = "repeat(8, 1fr)";
-        }
+        
     }
 }
 

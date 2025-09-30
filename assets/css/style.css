@@ -97,8 +97,6 @@ h1 > em {
     gap: 50px;
     margin: 20px auto;
     grid-template-columns: repeat(6, 140px);
-    /* Reference in ReadMe */
-    grid-template-rows: repeat(2, calc(140px / 2 * 3));
 }
 
 .card {
@@ -169,10 +167,10 @@ h1 > em {
 
     #game-grid {
         width: 100%; /* full width */
-        max-width: 700px; /* optional: limit max width so cards don’t stretch too much */
+        max-width: 140px; /* optional: limit max width so cards don’t stretch too much */
         margin: 0 auto; /* keep centered */
         grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
+        gap: 20px;
     }
 
     .card {
