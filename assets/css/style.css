@@ -79,6 +79,15 @@ h1 > em {
     display: none; /* Hidden by default, shown when game starts */
 }
 
+#contact-button {
+    background-color: #00bcd4;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 /* Hover effect for buttons */
 
 #start-button:hover {
@@ -88,6 +97,10 @@ h1 > em {
 .actions button:hover {
     background-color: #ff4081;
 }   
+
+#contact-button:hover {
+    background-color: #ff4081;
+}
 
 /* Game Area */
 
@@ -169,6 +182,57 @@ h1 > em {
     margin: 0 10px;
     font-size: 1.5rem;
     text-decoration: none;
+}
+
+#contact-section {
+    margin: 20px;
+    font-size: 1rem;
+    color: #00bcd4;
+    text-align: center;
+    /* Ensure it doesn't stretch too wide */
+    max-width: 400px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    background-color: #1e2a36;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* stack vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+}
+
+#contact-form input, #contact-form textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#contact-form button {
+    width: 50%;
+    align-self: center;
+    background-color: #ff4081;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#contact-form button:hover {
+    background-color: #00bcd4;
 }
 
 /* Media queries */

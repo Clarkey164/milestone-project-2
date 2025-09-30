@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fun and engaging card game that challenges players to create symmetry by flipping cards.">
+    <meta name="keywords" content="Symmetry Seekers, Card Game, Symmetry, Flip Cards, Puzzle Game, HTML5 Game, JavaScript Game">
+    <meta name="author" content="Stephen Clarke">
+
+    <title>!Symmetry Seekers!</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+    <header>
+        <h1><em>Contact</em>Us</h1>
+    </header>
+    <main>
+        <section id="contact-section">
+            <h2>We'd Love to Hear From You!</h2>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit" onclick="sendEmail()">Send Message</button>
+            </form>
+        </section>
+    </main>
+</body>
+<footer>
+    <div id="social-icons">
+        <a href="https://www.facebook.com" target="_blank"> <i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.twitter.com" target="_blank"> <i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com" target="_blank"> <i class="fab fa-instagram"></i></a>
+    </div>
+    <p>Developed by Stephen Clarke ©</p>
+</footer>
+    <!-- Link to external JavaScript file -->
+    <script src="assets/javascript/script.js" defer></script>
+    
+    <!-- Font Awesome for social media icons -->
+    <script src="https://kit.fontawesome.com/a20712ca3e.js" crossorigin="anonymous"></script>
+
+    <!--Emailjs-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>(function(){
+      emailjs.init("Kaqd6crW-KZb4FCVA");
+   })();</script>
+</html>
