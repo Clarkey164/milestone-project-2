@@ -181,12 +181,13 @@ function gameComplete() {
         document.createElement("div");
         const message = document.createElement("div");
         message.classList.add("message");
+        gameGrid.innerHTML = "";
         message.innerHTML = `
             <h2>Congratulations! You've completed all levels!</h2>
-            <p>Your final score is ${score} with ${attempts} attempts. </p>
-            <p>Total Score of ${(score + attempts)}!</p>
-            <p>Click the restart button to play again.</p>
-            <p>Share your score with friends!</p>
+            <p id="score">Your final score is ${score} with ${attempts} attempts. </p>
+            <p id="score">Total Score of ${(score + attempts)}!</p>
+            <p id="replay">Click the restart button to play again.</p>
+            <p id="replay">Share your score with friends!</p>
             <Button id="contact-button"><a href="contact.html">Contact Us</a></Button>
         `;
         
@@ -216,12 +217,17 @@ function showResetButton() {
 }
 
 // Email JS
+(function(){
+      emailjs.init("Kaqd6crW-KZb4FCVA");
+   })();
+
 function sendEmail() {
     let templateParams = {
         from_name: document.getElementById("name").value,
         from_email: document.getElementById("email").value,
         message: document.getElementById("message").value
     };
+
     emailjs.send("service_phv2jxj", "template_5xqu846", templateParams)
     .then(function(response) {
         console.log("SUCCESS!", response.status, response.text);

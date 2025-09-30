@@ -82,6 +82,7 @@ h1 > em {
 #contact-button {
     background-color: #00bcd4;
     border: none;
+    color: white;
     padding: 15px 30px;
     font-size: 1rem;
     cursor: pointer;
@@ -173,6 +174,18 @@ h1 > em {
     grid-column: 1 / -1; /* Span all columns */
 }
 
+.message h2 {
+    color: #ff4081;
+}
+
+.message #score {
+    color: #00bcd4;
+}
+
+.message #replay {
+    color: #ff4081;
+}
+
 #social-icons {
     margin: 20px;
 }
@@ -255,6 +268,11 @@ h1 > em {
         width: 100%;
         aspect-ratio: 2/3; /* maintains proportions */
     }
+
+    #game-grid .message {
+    /* Center message in grid */
+    grid-column: 1 / -1; /* Span all columns */
+    }
 }
 
 /* Mobile (360px) */
@@ -267,5 +285,10 @@ h1 > em {
         width: 90%;
         grid-template-columns: repeat(2, 1fr); /* 2 card per row */
         gap: 5px;
+    }
+
+    #game-grid .message {
+    /* Center message in grid */
+    grid-column: 1 / -1; /* Span all columns */
     }
 }
