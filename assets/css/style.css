@@ -94,7 +94,7 @@ h1 > em {
 #game-grid {
     display: grid;
     justify-content: center;
-    gap: 10px;
+    gap: 50px;
     margin: 20px auto;
     grid-template-columns: repeat(6, 140px);
     /* Reference in ReadMe */
@@ -117,17 +117,7 @@ h1 > em {
 .level-3 {
     /* Adjust grid for Level-3*/
     grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
-    grid-template-rows: repeat(2, auto); /* 2 rows with automatic height */
     gap: 8px; /* Slightly smaller gap for better fit */
-}
-
-.level-3 .card {
-    width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    aspect-ratio: 2 / 3; /* Maintain 2:3 aspect ratio */
-    max-width: 100px; /* Limit max width for better fit */
-    max-height: 150px; /* Limit max height for better fit */
-    margin: 0 auto; /* Center cards in their grid cells */
 }
 
 .front-image {
@@ -172,7 +162,7 @@ h1 > em {
 /* Media queries */
 
 /* Tablet (below 768px) */
-@media (max-width: 768px) {
+@media (max-width: 769px) {
     #instructions-section {
         padding: 10px 40px;
     }
@@ -188,11 +178,6 @@ h1 > em {
     .card {
         width: 100%;
         aspect-ratio: 2/3; /* maintains proportions */
-    }
-
-    .level-3 {
-        grid-template-columns: repeat(3, 1fr); /* 6 cards per row on tablet */
-        aspect-ratio: 2 / 3; /* Maintain 2:3 aspect ratio */
     }
 }
 
