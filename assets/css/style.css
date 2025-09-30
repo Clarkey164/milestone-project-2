@@ -155,6 +155,20 @@ h1 > em {
     font-size: 1.5rem;
     padding: 20px;
     color: #00bcd4;
+    justify-content: center;
+    /* Center message in grid */
+    grid-column: 1 / -1; /* Span all columns */
+}
+
+#social-icons {
+    margin: 20px;
+}
+
+#social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    text-decoration: none;
 }
 
 /* Media queries */
