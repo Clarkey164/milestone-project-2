@@ -37,7 +37,7 @@ function generateCards(cardNamesLevel1) {
     shuffleCards();
     cards.forEach(name => {
         const card = document.createElement("div");
-        card.classList.add("card",);
+        card.classList.add("card");
         card.dataset.name = name;
         card.innerHTML = `
             <div class="front">
