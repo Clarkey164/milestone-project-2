@@ -216,6 +216,9 @@ function showResetButton() {
     });
 }
 
+// Attempts loop 
+
+
 // Email JS
 (function(){
       emailjs.init("Kaqd6crW-KZb4FCVA");
